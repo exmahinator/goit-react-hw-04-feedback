@@ -11,6 +11,7 @@ class FeedbackOptions extends Component {
 
   render() {
     const { options } = this.props;
+
     const keys = Object.keys(options);
 
     return (
@@ -36,7 +37,6 @@ class FeedbackOptions extends Component {
         </li> */}
 
         {keys.map(key => {
-          //   console.log(key);
           return (
             <FeedbackBtnItem key={key}>
               <FeedbackButton
@@ -57,5 +57,9 @@ class FeedbackOptions extends Component {
 export default FeedbackOptions;
 
 FeedbackOptions.propTypes = {
-  options: PropTypes.object.isRequired,
+  options: PropTypes.exact({
+    good: PropTypes.number.isRequired,
+    neutral: PropTypes.number.isRequired,
+    bad: PropTypes.number.isRequired,
+  }),
 };
