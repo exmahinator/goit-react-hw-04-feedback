@@ -4,11 +4,6 @@ import { Component } from 'react';
 import PropTypes from 'prop-types';
 
 class FeedbackOptions extends Component {
-  onBtnClick = event => {
-    const { name } = event.target;
-    this.props.onLeaveFeedback(name);
-  };
-
   render() {
     const { options } = this.props;
 
@@ -16,33 +11,12 @@ class FeedbackOptions extends Component {
 
     return (
       <FeedbackList>
-        {/* <li>
-          <FeedbackButton type="button" onClick={this.onBtnClick} name="good">
-            Good
-          </FeedbackButton>
-        </li>
-        <li>
-          <FeedbackButton
-            type="button"
-            onClick={this.onBtnClick}
-            name="neutral"
-          >
-            Neutral
-          </FeedbackButton>
-        </li>
-        <li>
-          <FeedbackButton type="button" onClick={this.onBtnClick} name="bad">
-            Bad
-          </FeedbackButton>
-        </li> */}
-
         {keys.map(key => {
           return (
             <FeedbackBtnItem key={key}>
               <FeedbackButton
                 type="button"
-                onClick={this.onBtnClick}
-                name={key}
+                onClick={() => this.props.onLeaveFeedback(key)}
               >
                 {key}
               </FeedbackButton>

@@ -20,8 +20,15 @@ class Feedback extends Component {
   };
 
   countTotalFeedback = () => {
-    const { good, neutral, bad } = this.state;
-    return good + neutral + bad;
+    let total = 0;
+    const values = Object.values(this.state);
+    for (const value of values) {
+      total += value;
+    }
+    return total;
+
+    // const { good, neutral, bad } = this.state;
+    // return good + neutral + bad;
   };
 
   countPositiveFeedbackPercentage = () => {
@@ -41,35 +48,6 @@ class Feedback extends Component {
       <FeedbackSection>
         <div>
           <h1>Expresso</h1>
-          {/* <FeedbackList>
-          <li>
-            <FeedbackButton
-              type="button"
-              onClick={this.incrementValue}
-              name="good"
-            >
-              Good
-            </FeedbackButton>
-          </li>
-          <li>
-            <FeedbackButton
-              type="button"
-              onClick={this.incrementValue}
-              name="neutral"
-            >
-              Neutral
-            </FeedbackButton>
-          </li>
-          <li>
-            <FeedbackButton
-              type="button"
-              onClick={this.incrementValue}
-              name="bad"
-            >
-              Bad
-            </FeedbackButton>
-          </li>
-        </FeedbackList> */}
 
           <SectionTitle title="Please leave feedback">
             <FeedbackOptions
@@ -77,15 +55,6 @@ class Feedback extends Component {
               onLeaveFeedback={this.incrementValue}
             />
           </SectionTitle>
-
-          {/* <p>Statistic</p>
-        <ul>
-          <li>Good: {good}</li>
-          <li>Neutral: {neutral}</li>
-          <li>Bad: {bad}</li>
-          <li>Total: {this.countTotalFeedback()}</li>
-          <li>Positive feedback: {this.countPositiveFeedbackPercentage()}%</li>
-        </ul> */}
 
           <SectionTitle title="Statistics">
             {this.countTotalFeedback() ? (
